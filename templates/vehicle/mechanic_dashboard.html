@@ -1,0 +1,214 @@
+{% extends 'vehicle/mechanicbase.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Main Content -->
+<div class="wrapper">
+
+    <!-- Cards Section -->
+    <div class="stats-container">
+        <div class="stat-card bg-primary">
+            <i class="fas fa-tasks"></i>
+            <h3>{{ new_work_assigned }}</h3>
+            <p>New Work Assigned</p>
+        </div>
+        <div class="stat-card bg-warning">
+            <i class="fas fa-spinner"></i>
+            <h3>{{ work_in_progress }}</h3>
+            <p>Work In Progress</p>
+        </div>
+        <div class="stat-card bg-success">
+            <i class="fas fa-check-circle"></i>
+            <h3>{{ work_completed }}</h3>
+            <p>Work Completed</p>
+        </div>
+        <div class="stat-card bg-danger">
+            <i class="fas fa-rupee-sign"></i>
+            <h3>{{ salary }}</h3>
+            <p>Salary</p>
+        </div>
+    </div>
+    <br>
+
+    <div class="charts-container">
+        <div class="chart-box">
+            <canvas id="statusPieChart"></canvas>
+            <p class="chart-title">Work Status Distribution</p>
+        </div>
+        <div class="chart-box">
+            <canvas id="monthlyBarChart"></canvas>
+            <p class="chart-title">Repairs Per Month</p>
+        </div>
+        <div class="chart-box">
+            <canvas id="salaryDonutChart"></canvas>
+            <p class="chart-title">Salary Distribution</p>
+        </div>
+    </div>
+    <br><br><br><br><br>
+
+    <!-- Vehicle Brands Section -->
+
+    <div class="brands-container">
+        <div class="brands-slider">
+            <img src="{% static 'images/ferrari.png' %}" alt="Ferrari">
+            <img src="{% static 'images/ford.png' %}" alt="Ford">
+            <img src="{% static 'images/lambo.png' %}" alt="Lamborghini">
+            <img src="{% static 'images/mahindra.png' %}" alt="Mahindra">
+            <img src="{% static 'images/tvs.png' %}" alt="TVS">
+            <img src="{% static 'images/tata.png' %}" alt="Tata">
+            <img src="{% static 'images/hero.png' %}" alt="Hero">
+            <img src="{% static 'images/rolls.png' %}" alt="Rolls Royce">
+            <img src="{% static 'images/suzuki.png' %}" alt="Suzuki">
+        </div>
+    </div>
+
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var statusLabels = JSON.parse('{{ status_labels|escapejs }}');
+    var statusCounts = JSON.parse('{{ status_counts|escapejs }}');
+    var months = JSON.parse('{{ months|escapejs }}');
+    var requestCounts = JSON.parse('{{ request_counts|escapejs }}');
+    var salaryLabels = JSON.parse('{{ salary_labels|escapejs }}');
+    var salaryValues = JSON.parse('{{ salary_values|escapejs }}');
+
+    // Pie Chart for Work Status
+    var ctx1 = document.getElementById('statusPieChart').getContext('2d');
+    new Chart(ctx1, {
+        type: 'pie',
+        data: {
+            labels: statusLabels,
+            datasets: [{
+                data: statusCounts,
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+            }]
+        },
+        options: {
+            maintainAspectRatio: false
+        }
+    });
+
+    // Bar Chart for Monthly Repairs
+    var ctx2 = document.getElementById('monthlyBarChart').getContext('2d');
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: months,
+            datasets: [{
+                label: 'Repairs Per Month',
+                data: requestCounts,
+                backgroundColor: '#42A5F5',
+            }]
+        },
+        options: {
+            maintainAspectRatio: false
+        }
+    });
+
+    // Donut Chart for Salary
+    var ctx3 = document.getElementById('salaryDonutChart').getContext('2d');
+    new Chart(ctx3, {
+        type: 'doughnut',
+        data: {
+            labels: statusLabels,
+            datasets: [{
+                data: statusCounts,
+                backgroundColor: ['#8E44AD', '#36A2EB', '#FFCE56'],
+            }]
+        },
+        options: {
+            maintainAspectRatio: false
+        }
+    });
+</script>
+
+
+<!-- CSS Styling -->
+<style>
+    .stats-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .stat-card {
+        text-align: center;
+        padding: 20px;
+        border-radius: 12px;
+        color: white;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .stat-card i {
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+
+    .brands-container {
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .brands-slider {
+        display: flex;
+        gap: 20px;
+        animation: slide 10s linear infinite;
+    }
+
+    .brands-slider img {
+        width: 120px;
+        height: 80px;
+        transition: transform 0.3s ease;
+    }
+
+    .brands-slider img:hover {
+        transform: scale(1.1);
+    }
+
+    @keyframes slide {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    .charts-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+        flex-wrap: wrap; /* Allows responsiveness */
+    }
+
+    .chart-box {
+    flex: 1;
+    max-width: 400px;
+    height: 400px;
+    text-align: center; /* Center align text */
+}
+
+.chart-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+    canvas {
+        width: 100% !important;
+        height: 100% !important;
+    }
+</style>
+
+{% endblock content %}

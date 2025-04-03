@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <style>
+        .jumbotron {
+            background: linear-gradient(135deg, #4f55c7, #2b2f77);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        .alert {
+            margin: 20px 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .brands-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+        .brand-logo {
+            width: 120px;
+            height: 80px;
+        }
+    </style>
+    <title>About Us</title>
+</head>
+
+<body>
+    {% include "vehicle/navbar.html" %}
+    <br>
+    <div class="container"><br><br>
+        <div class="alert alert-success text-center">About Us</div>
+        
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome to Vehicle Service Management</h1>
+            <p class="lead">Your trusted partner in vehicle maintenance and repair.</p>
+            <hr class="my-4">
+            <p>We provide top-quality service and ensure your ride is always in the best condition.</p>
+            <a class="btn btn-light btn-lg" href="/" role="button">Go to Home</a>
+        </div>
+        <br><br>
+        <div class="brands-container">
+            <img src="{% static 'images/ferrari.png' %}" class="brand-logo" alt="Ferrari" />
+            <img src="{% static 'images/ford.png' %}" class="brand-logo" alt="Ford" />
+            <img src="{% static 'images/lambo.png' %}" class="brand-logo" alt="Lamborghini" />
+            <img src="{% static 'images/mahindra.png' %}" class="brand-logo" alt="Mahindra" />
+            <img src="{% static 'images/tvs.png' %}" class="brand-logo" alt="TVS" />
+            <img src="{% static 'images/tata.png' %}" class="brand-logo" alt="Tata" />
+            <img src="{% static 'images/hero.png' %}" class="brand-logo" alt="Hero" />
+            <img src="{% static 'images/rolls.png' %}" class="brand-logo" alt="Rolls Royce" />
+            <img src="{% static 'images/suzuki.png' %}" class="brand-logo" alt="Suzuki" />
+        </div>
+    </div>
+    <br><br>
+    {% include "vehicle/footer.html" %}
+</body>
+</html>

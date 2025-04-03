@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load static %}
+{% load widget_tweaks %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechanic Signup</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('{% static "images/image.png" %}') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .signup-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 700px;
+            height: 750px;
+            margin-top: 5%;
+            
+        }
+        .signup-container h1 {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .signup-container p {
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        .signup-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+        .signup-container input[type="text"],
+        .signup-container input[type="password"],
+        .signup-container input[type="email"] {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .signup-container input::placeholder {
+            color: #eee;
+        }
+        .signup-container input[type="submit"] {
+            background: #27ae60;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .signup-container input[type="submit"]:hover {
+            background: #219150;
+        }
+    </style>
+</head>
+<body>
+    {% include "vehicle/navbar.html" %}
+    <br><br><br><br><br><br><br><br>
+    <div class="signup-container">
+        
+        <form method="post" enctype="multipart/form-data">
+            
+            {% csrf_token %}
+            <h1>Mechanic Signup</h1>
+            <p>Please enter your details to create an account</p>
+            {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
+            {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}
+            {% render_field userForm.email class="form-control" placeholder="Email" %}
+            {% render_field userForm.username class="form-control" placeholder="Username" %}
+            {% render_field userForm.password class="form-control" placeholder="Password" %}
+            {% render_field mechanicForm.address class="form-control" placeholder="Address" %}
+            
+            {% render_field mechanicForm.mobile class="form-control" placeholder="Mobile" %}
+            {% render_field mechanicForm.skill class="form-control" placeholder="Skills" %}
+            {% render_field mechanicForm.profile_pic class="form-control" placeholder="Profile Picture" %}
+            <input type="submit" value="Create">
+            <p><B>Already have an account? </B><a href="{% url 'mechaniclogin' %}" style="color:#66fcf1;"><b>Login</b></a></p>
+        </form>
+    </div>
+    <!-- {% include "vehicle/footer.html" %} -->
+</body>
+</html>

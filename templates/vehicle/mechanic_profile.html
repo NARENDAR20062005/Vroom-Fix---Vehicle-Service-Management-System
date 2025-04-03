@@ -1,0 +1,71 @@
+{% extends 'vehicle/mechanicbase.html' %}
+{% load static %}
+{% block content %}
+<head>
+  <style>
+    .profile-container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .profile-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 20%;
+      margin-bottom: 15px;
+    }
+
+    .profile-info {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 8px;
+      text-align:center;
+      padding: 5px 15px;
+    }
+
+    .info-container {
+      text-align: left;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .edit-button {
+      display: inline-block;
+      background-color: #007bff;
+      color: white;
+      padding: 20px 30px;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: background 0.3s;
+      margin-top: 15px;
+    }
+
+    .edit-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<br><br>
+<div class="profile-container">
+  <br><br>
+  <img class="profile-img" src="{% static mechanic.profile_pic.url %}" alt="Mechanic Profile Picture">
+  <div class="info-container">
+    <p class="profile-info"><b>Name:</b> {{ mechanic }}</p>
+    <p class="profile-info"><b>Mobile:</b> {{ mechanic.mobile }}</p>
+    <p class="profile-info"><b>Email:</b> {{ mechanic.email }}</p>
+    <p class="profile-info"><b>Skill:</b> {{ mechanic.skill }}</p>
+    <p class="profile-info"><b>Address:</b> {{ mechanic.address }}</p>
+  </div>
+  
+  <a href="/edit-mechanic-profile" class="edit-button">Edit Profile</a>
+  <br><br>
+</div>
+
+{% endblock content %}

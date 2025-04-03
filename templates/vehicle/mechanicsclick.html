@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vehicle Service Management</title>
+
+    <style>
+        /* General Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #121212;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      max-width: 150px;
+      height: 100px;
+      margin: auto;
+      text-align: center;
+      font-family: arial;
+    }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('{% static "images/image.png" %}') no-repeat center center/cover;
+            font-size: 3rem;
+            
+        }
+        
+
+        /* Dark Overlay for Readability */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        /* Glassmorphism Box */
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(0.5px);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            height: 60vh;
+            max-width: 600px;
+            
+            
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #f1f1f1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #f1f1f1;
+        }
+
+        /* Button Styles */
+        .btn-group {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-signup {
+            
+            color: white;
+            box-shadow: 0 4px 10px rgba(255, 87, 51, 0.3);
+        }
+
+        .btn-login {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-login:hover {
+            background: white;
+            color: #222;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    {% include "vehicle/navbar.html" %}
+
+    
+
+    <!-- Hero Section -->
+    <div class="hero">
+      <!-- <h1 ><b>Welcome to Our<br> Vehicle Services</b></h1> -->
+      <br><br><br><br><br>
+        <div class="hero-content">
+            <h1>Hello, Mechanics!!</h1>
+            <p>You can access various features after Login.</p>
+            <div class="card">
+              <img src="{% static "images/mech.jpg" %}" alt="John" style="width:100%">
+            </div>
+            
+            <div class="btn-group">
+                <a class="btn  btn-lg" style="background-color: #66fcf1; color:black;border-radius: 10%;" href="mechanicsignup"><b>Apply for Job</b></a>
+                <a class="btn  btn-lg"  style="background-color: #66fcf1; color: black; border-radius: 10%;" href="mechaniclogin"><b>Login</b></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    {% include "vehicle/footer.html" %}
+
+</body>
+
+</html>
+
